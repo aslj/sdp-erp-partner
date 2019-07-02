@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<property name="log-path" value="../logs" />
+	<statusListener class="ch.qos.logback.core.status.NopStatusListener" />
+	<jmxConfigurator />
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>%-4relative [%thread] %-6level %logger - %msg%n</Pattern>
+			<!--  <Pattern>[%thread] %highlight(%-5level) %cyan(%logger{15}) - %msg %n</Pattern>-->
+		</layout>
+	</appender>
+	<appender name="CUSTOM_LOG_APPENDER"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log-path}/main.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${log-path}/logFileAdmin.%d{yyyy-MM-dd}.log</FileNamePattern>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>%-4relative [%thread] %-6level %logger - %msg%n</Pattern>
+		</layout>	
+	</appender>	
+	<appender name="FILE-ADMIN-CDR"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log-path}/main-cdr.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- daily rollover -->
+			<FileNamePattern>${log-path}/logFileAdminCdr.%d{yyyy-MM-dd}.log</FileNamePattern>
+			<!-- keep 30 days' worth of history -->
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>%d{yyyyMMddHHmmss}|%msg%n</Pattern>
+		</layout>
+	</appender>
+	<appender name="FILE-ADMIN-CDR-TAIL"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log-path}/main-tail.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- daily rollover -->
+			<FileNamePattern>${log-path}/logFileAdminTail.%d{yyyy-MM-dd}.log</FileNamePattern>
+			<!-- keep 30 days' worth of history -->
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>%d{yyyyMMddHHmmss}|%msg%n</Pattern>
+		</layout>
+	</appender>
+	<logger name="main-logger"
+		level="info" additivity="true">
+		<appender-ref ref="FILE-ADMIN-CDR-TAIL" />
+		<appender-ref ref="STDOUT" />
+	</logger>
+	<springProfile name="default">
+	<logger name="com.mainapp" level="debug"
+		additivity="false">
+		<appender-ref ref="CUSTOM_LOG_APPENDER" />
+		<appender-ref ref="STDOUT" />		
+	</logger>
+	</springProfile>
+	<springProfile name="default">
+		<logger name="com.mainapp.core.aop" level="info"
+			additivity="false">
+			<appender-ref ref="FILE-ADMIN-CDR-TAIL" />
+			<appender-ref ref="STDOUT" />		
+		</logger>
+	</springProfile>
+	<logger name="org.springframework" level="error"
+		additivity="false">
+		<appender-ref ref="CUSTOM_LOG_APPENDER" />
+		<appender-ref ref="STDOUT" />	
+	</logger>
+	<logger name="org.hibernate" level="error"
+		additivity="false">
+		<appender-ref ref="CUSTOM_LOG_APPENDER" />
+		<appender-ref ref="STDOUT" />	
+	</logger>
+	<logger name="org.thymeleaf" level="error"
+		additivity="false">
+		<appender-ref ref="CUSTOM_LOG_APPENDER" />
+		<appender-ref ref="STDOUT" />	
+	</logger>	
+	<logger name="net.sf.jasperreports" level="error"
+		additivity="false">
+		<appender-ref ref="CUSTOM_LOG_APPENDER" />
+		<appender-ref ref="STDOUT" />	
+	</logger>	
+		<logger name="springfox.documentation" level="error"
+		additivity="false">
+		<appender-ref ref="CUSTOM_LOG_APPENDER" />
+		<appender-ref ref="STDOUT" />	
+	</logger>	
+	<logger name="org.jboss.resteasy" level="error"
+		additivity="false">
+		<appender-ref ref="CUSTOM_LOG_APPENDER" />
+		<appender-ref ref="STDOUT" />	
+	</logger>	
+	<logger name="org.apache.http" level="error"
+		additivity="false">
+		<appender-ref ref="CUSTOM_LOG_APPENDER" />
+		<appender-ref ref="STDOUT" />	
+	</logger>
+	<springProfile name="default">
+	<root level="debug">	
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="CUSTOM_LOG_APPENDER" />
+	</root>
+	</springProfile>
+		<springProfile name="prod">
+		<root level="ERROR">	
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="CUSTOM_LOG_APPENDER" />
+	</root>
+	</springProfile>
+</configuration>

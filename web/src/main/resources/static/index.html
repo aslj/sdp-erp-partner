@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es-MX" ng-app="mainApp" ng-controller="mainCtrl">
+<head>
+  <title>MA : Main App</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="stylesheet" href="/components/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/css/bootstrap-timepicker.css" />
+  <link rel="stylesheet" href="/components/Ionicons/css/ionicons.min.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css"
+                         integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1"
+                         crossorigin="anonymous">
+  <link rel="stylesheet" href="/components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" />
+  <link rel="stylesheet" href="/components/bootstrap-daterangepicker/daterangepicker.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic" />
+  <link rel="stylesheet" href="/css/bootstrap-ui/ui-bootstrap-2.5.0-csp.css" />
+  <link rel="stylesheet" type="text/css" href="/css/main.css" />
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+  <section ng-view="" class="content" id="principalFrame"></section>
+  <dialog id="working-dialog" class="site-dialog working-dialog">
+    <header class="dialog-header"><h1>...procesando</h1></header>
+    <div class="text-center"><img src="/images/loader.gif" /></div>
+  </dialog>
+  <!-- jquery js  -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="/components/jquery-ui/jquery-ui.min.js"></script>
+  <!-- angularjs js  -->
+  <script src="/webjars/angularjs/1.4.9/angular.js"></script>
+  <script src="/webjars/angularjs/1.4.9/angular-resource.js"></script>
+  <script src="/webjars/angularjs/1.4.9/angular-route.js"></script>
+  <!-- tooltips popper-->
+  <script src="/components/popper/popper.min.js"></script>
+  <!-- Bootstrap 3.3.7 -->
+  <script src="/components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="/js/plugins/angular-animate/1_4_9/angular-animate_1_4_9.js"></script>
+  <script src="/js/bootstrap-ui/ui-bootstrap-tpls-2.5.0.js"></script>
+  <!-- datepicker -->
+  <script src="/components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+  <!-- daterangepicker -->
+  <script src="/components/moment/min/moment.min.js"></script>
+  <script src="/components/bootstrap-daterangepicker/daterangepicker.js"></script>
+  <!-- datepicker -->
+  <script src="/js/plugins/moment-with-locales.js"></script>
+  <script src="/js/plugins/bootstrap-datetimepicker.js"></script>
+  <script src="/js/plugins/bootstrap-timepicker.js"></script>
+  <!-- angular-timer -->
+  <script src="/components/angular-timer-master/dist/js/angular-timer-all.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.6.8/angular-locale_es-mx.js"></script>
+  <script src="/js/plugins/angular-file-upload/angular-file-upload.js"></script>
+  <!-- Main App -->
+  <script src="/js/modules/app.js"></script>
+  <script src="/js/controllers/mainCtrl.js"></script>
+  <script src="/js/controllers/homeCtrl.js"></script>
+  <script src="/js/controllers/exampleCtrl.js"></script>
+  <script src="/js/factories/mainFactory.js"></script>
+</body>
+</html>
